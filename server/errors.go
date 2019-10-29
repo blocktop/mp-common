@@ -9,9 +9,6 @@ const (
 	// BADTXN is the error code for a bad transaction from the client.
 	BADTXN = "BADTXN"
 
-	// CHLFAIL is the error code for a create a challenge transaction.
-	CHLFAIL = "CHLFAIL"
-
 	// SRVFAIL is the error code for a server side panic.
 	SRVFAIL = "SRVFAIL"
 
@@ -32,9 +29,6 @@ const (
 
 	// JWTINVD is the error code for an invalid JWT token.
 	JWTINVD = "JWTINVD"
-
-	// SVRASSET is the error code for when retrieving packr asset fails.
-	SVRASSET = "SVRASSET"
 )
 
 func ResponseError(w http.ResponseWriter, statusCode int, errorCode string, e error) {

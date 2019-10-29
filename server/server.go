@@ -9,8 +9,8 @@ import (
 	"log"
 )
 
-func RunHTTPServer(h *chi.Mux, c baseconfig.Config) {
-	cfg := c.(*baseconfig.BaseConfig)
+func RunHTTPServer(h *chi.Mux) {
+	cfg := baseconfig.GetConfig()
 
 	listenAddr := fmt.Sprintf("0.0.0.0:%d", cfg.HTTPServerPort)
 

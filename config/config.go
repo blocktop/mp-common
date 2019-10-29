@@ -26,6 +26,8 @@ type BaseConfig struct {
 	HTTPServerHealthPath     string `env:"MP_HTTP_SERVER_HEALTH_PATH" envDefault:"/health"`
 	TLSCertPath              string `env:"MP_TLS_CERT_PATH"`
 	TLSKeyPath               string `env:"MP_TLS_KEY_PATH"`
+	SigningKey               string `env:"MP_SIGNING_KEY"`
+	SigningKeySeed           string `env:"MP_SIGNING_KEY_SEED"`
 	NetworkPassphrase        string
 }
 
@@ -35,6 +37,12 @@ const (
 	Dev   = "dev"
 	Local = "local"
 )
+
+var cfg *BaseConfig
+
+func GetConfig() *BaseConfig {
+	return cfg
+}
 
 func (c *BaseConfig) Parse() {
 	err := env.Parse(c)
@@ -47,6 +55,8 @@ func (c *BaseConfig) Parse() {
 	} else {
 		c.NetworkPassphrase = network.TestNetworkPassphrase
 	}
+
+	cfg = c
 }
 
 func (c *BaseConfig) IsProduction() bool {
