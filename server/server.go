@@ -9,6 +9,7 @@ import (
 	"log"
 )
 
+// RunHTTPServer runs an HTTP server with stellar-normative options configured.
 func RunHTTPServer(h *chi.Mux) {
 	cfg := baseconfig.GetConfig()
 
