@@ -2,17 +2,18 @@ package server
 
 import (
 	"fmt"
-	config2 "github.com/blocktop/mp-common/config"
+	baseconfig "github.com/blocktop/mp-common/config"
 	"github.com/go-chi/chi"
 	"github.com/stellar/go/support/config"
 	"github.com/stellar/go/support/http"
 	"log"
 )
 
-func RunHTTPServer(h *chi.Mux, name string, port int) {
-	listenAddr := fmt.Sprintf("0.0.0.0:%d", port)
+func RunHTTPServer(h *chi.Mux, c baseconfig.Config) {
+	cfg := c.(*baseconfig.BaseConfig)
 
-	cfg := config2.GetConfig()
+	listenAddr := fmt.Sprintf("0.0.0.0:%d", cfg.HTTPServerPort)
+
 	tls := &config.TLS{
 		CertificateFile: cfg.TLSCertPath,
 		PrivateKeyFile:  cfg.TLSKeyPath,
@@ -25,9 +26,9 @@ func RunHTTPServer(h *chi.Mux, name string, port int) {
 		ShutdownGracePeriod: 15,
 	}
 
-	log.Printf("starting %s at: %s", name, listenAddr)
+	log.Printf("starting %s at: %s", cfg.HTTPServerName, listenAddr)
 
 	http.Run(httpCfg)
 
-	log.Printf("shutting down %s", name)
+	log.Printf("shutting down %s", cfg.HTTPServerName)
 }

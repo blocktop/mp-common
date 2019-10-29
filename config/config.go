@@ -16,12 +16,16 @@ type Config interface {
 // BaseConfig holds system configuration values.
 type BaseConfig struct {
 	Environment              string `env:"MP_ENV" envDefault:"local"`
+	HTTPServerName           string `env:"MP_HTTP_SERVER_NAME" envDefault:"http server"`
+	HTTPServerPort           int    `env:"MP_HTTP_SERVER_PORT"`
 	HTTPServerWriteTimeout   int    `env:"MP_HTTP_SERVER_WRITE_TIMEOUT" envDefault:"15"`
 	HTTPServerReadTimeout    int    `env:"MP_HTTP_SERVER_READ_TIMEOUT" envDefault:"15"`
 	HTTPServerIdleTimeout    int    `env:"MP_HTTP_SERVER_IDLE_TIMEOUT" envDefault:"60"`
 	HTTPServerRequestTimeout int    `env:"MP_HTTP_SERVER_REQUEST_TIMEOUT" envDefault:"60"`
 	HTTPServerMaxErrorPct    int    `env:"MP_HTTP_SERVER_MAX_ERROR_PCT" envDefault:"5"`
 	HTTPServerHealthPath     string `env:"MP_HTTP_SERVER_HEALTH_PATH" envDefault:"/health"`
+	TLSCertPath              string `env:"MP_TLS_CERT_PATH"`
+	TLSKeyPath               string `env:"MP_TLS_KEY_PATH"`
 	NetworkPassphrase        string
 }
 
