@@ -24,3 +24,8 @@ func ResponseJSONMap(w http.ResponseWriter, j map[string]interface{}) {
 		_, _ = w.Write([]byte(`"failed to encode json data"`))
 	}
 }
+
+func ResponseText(w http.ResponseWriter, text []byte) {
+	w.Header().Add("Content-Type", "text/plain")
+	w.Write(text)
+}

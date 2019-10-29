@@ -29,6 +29,9 @@ const (
 
 	// JWTINVD is the error code for an invalid JWT token.
 	JWTINVD = "JWTINVD"
+
+	// NOFILE is the error code for a file not found
+	NOFILE = "NOFILE"
 )
 
 func ResponseError(w http.ResponseWriter, statusCode int, errorCode string, e error) {
